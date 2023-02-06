@@ -1,0 +1,15 @@
+
+$apiData = Invoke-WebRequest "https://datausa.io/api/data?drilldowns=State&measures=Population"
+
+$parsedData = $apiData.Content | ConvertFrom-Json
+
+
+$states = $parsedData.data | ForEach-Object {
+    [PSCustomObject]@{
+        State = $_.State
+        Year = $_.Year
+        Population = $_.Population
+    }
+}
+
+$states | Export-Csv "populationData.csv" -NoTypeInformation
