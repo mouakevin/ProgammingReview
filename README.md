@@ -7,7 +7,8 @@ Here is a quick README on this challenge.  I am listing my throught process on t
 When making the Invoke-WebRequest it returns specific fields.
 I then stored the "Content" value from that API call into a variable and converted it to a JSON so that way I can properly parse the data.
 
-![image](https://user-images.githubusercontent.com/22757140/217086972-c3981311-367d-4647-af3d-c787d5ca939d.png)
+![image](https://user-images.githubusercontent.com/22757140/217090091-56009d65-4628-4d30-a204-81bdf84f56e2.png)
+
 
 
 I then stored the call into $states using a hash map and a forloop.
