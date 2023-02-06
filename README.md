@@ -19,10 +19,13 @@ Then towards the end i exported the values into a CSV
 Documentation used:
 
 Invoke-Webrequest
+
 https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-7.3
 
 How to use a hashmap in powershell
+
 https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-7.3
 
 Syntax for powershell
+
 https://devblogs.microsoft.com/scripting/powershell-for-programmers-basic-syntax-cmdlets/
