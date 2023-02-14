@@ -29,3 +29,28 @@ https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/ab
 Syntax for powershell
 
 https://devblogs.microsoft.com/scripting/powershell-for-programmers-basic-syntax-cmdlets/
+
+sort-object shell
+
+https://stackoverflow.com/questions/62979510/how-to-use-sort-object-and-where-object-in-select-object-in-powershell
+
+prime-factorizing
+
+https://stackoverflow.com/questions/28446997/powershell-calculating-prime-factors
+
+Composite formating
+
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_format_strings?view=powershell-7.2
+
+
+Group-Object: 
+
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/group-object
+
+Where-Object: 
+
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object
+
+Select-Object: 
+
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object
