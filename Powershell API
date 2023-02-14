@@ -1,15 +1,41 @@
 
-$apiData = Invoke-WebRequest "https://datausa.io/api/data?drilldowns=State&measures=Population"
+#confirming i can access the $data
+Write-host $data.State
 
-$parsedData = $apiData.Content | ConvertFrom-Json
 
+# getting all available years from $data and only returninng Unique
+$years = $data.Year | Sort-Object -Unique
 
-$states = $parsedData.data | ForEach-Object {
-    [PSCustomObject]@{
-        State = $_.State
-        Year = $_.Year
-        Population = $_.Population
+#check output for $years
+write-host $years
+
+#emtpy array for population change data
+$csvData = @()
+
+# Loop through states and years to calculate population change
+foreach ($state in $data | Group-Object State) {
+    $currentState = $state.Name
+    $previousYearPopulation = $null
+    foreach ($year in $years) {
+        $population = $state.Group | Where-Object Year -eq $year | Select-Object -ExpandProperty Population
+        if ($previousYearPopulation) {
+            $changeRaw = $population - $previousYearPopulation
+            $changePct = "{0:P2}" -f ($changeRaw / $previousYearPopulation)
+            $csvData += [PSCustomObject]@{
+                State = $currentState
+                Year = $year
+                Population = $population
+                "Population Change (Raw)" = $changeRaw
+                "Population Change (%)" = $changePct
+            }
+        }
+        $previousYearPopulation = $population
     }
 }
 
-$states | Export-Csv "populationData.csv" -NoTypeInformation
+# Get the final year's population and its prime factors
+$finalYearPopulation = $data | Where-Object Year -eq $years[-1] | Select-Object -ExpandProperty Population
+$primeFactors = @(1..$finalYearPopulation | Where-Object {($finalYearPopulation % $_) -eq 0})
+
+# Export CSV file
+$csvData | Export-Csv -Path "yourpathtothis.cvs" -NoTypeInformation
