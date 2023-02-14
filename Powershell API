@@ -3,30 +3,23 @@ $url = "https://datausa.io/api/data?drilldowns=State&measures=Population"
 $response = Invoke-RestMethod -Uri $url -Method Get
 $data = $response.data
 
-# Get all available years from the data
-$years = $data.Year | Sort-Object -Unique
-
-# Initialize empty array for CSV data
-$csvData = @()
-
-
 #will check back if i need to convert to json
 #checking output $data assumptions
+
 Write-Host $data
 
 #confirming i can access the $data
 Write-host $data.State
 
 
-# getting all available years from $data and only returninng Unique
+# getting all available years from $data and only returning Unique
 $years = $data.Year | Sort-Object -Unique
 
 #check output for $years
-#write-host $years
+write-host $years
 
-
-# Get all available years from the data
-$years = $data.Year | Sort-Object -Unique
+# Initialize empty array for CSV data
+$csvData = @()
 
 
 # Loop through states and years to calculate population change
@@ -50,9 +43,10 @@ foreach ($state in $data | Group-Object State) {
     }
 }
 
-# Get the final year's population and its prime factors
+# Get the final year's population
 $finalYearPopulation = $data | Where-Object Year -eq $years[-1] | Select-Object -ExpandProperty Population
 
 
 # Export CSV file
-$csvData | Export-Csv -Path "C:\Users\huhmongous\Downloads\population_change_final.csv" -NoTypeInformation
+$csvData | Export-Csv -Path "insert\your\path\population_change_final.csv" -NoTypeInformation
+
